@@ -14,5 +14,5 @@ public interface CRUD_AVION {
 
     public Object findById(int id);
 
-    public Object findName(String name);
+    public Object findModelo(String modelo);
 }
