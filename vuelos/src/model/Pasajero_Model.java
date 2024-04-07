@@ -132,7 +132,42 @@ public class Pasajero_Model implements CRUD_PASAJERO {
     }
 
     @Override
-    public Object findById(String documento_identidad) {
+    public Object findById(int id) {
+        Connection objConnection = ConfiDB.openConnection();
+
+        Pasajero objPasajero = new Pasajero();
+
+        try{
+            String sql = "SELECT * FROM pasajero WHERE id_pasajero = ?;";
+
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+            objPrepare.setInt(1,id);
+            objPrepare.executeQuery();
+            ResultSet objResult = (ResultSet) objPrepare.executeQuery();
+            boolean resultadoId = objResult.next();
+
+            if(!resultadoId){
+                JOptionPane.showMessageDialog(null,"Documento no encontrado");
+                return null;
+            }else {
+                objPasajero.setId_pasajero(objResult.getInt("id_pasajero"));
+                objPasajero.setNombre(objResult.getString("nombre"));
+                objPasajero.setApellidos(objResult.getString("apellidos"));
+                objPasajero.setDocumento_identidad(objResult.getString("documento_identidad"));
+
+            }
+
+        }catch (SQLException e){
+            JOptionPane.showMessageDialog(null,"Data error");
+            System.out.println(e.getMessage());
+        }
+        ConfiDB.closeConnection();
+
+        return objPasajero;
+    }
+
+    @Override
+    public Object findBydocument(String documento_identidad) {
         Connection objConnection = ConfiDB.openConnection();
 
         Pasajero objPasajero = new Pasajero();

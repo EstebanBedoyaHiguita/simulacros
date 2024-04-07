@@ -13,5 +13,5 @@ public interface CRUD_RESERVACION {
 
     public Object findById(int id);
 
-    public Object findName(String paciente);
+    public Object findDate(String fecha_reservacion);
 }

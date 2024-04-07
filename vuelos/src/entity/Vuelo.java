@@ -77,7 +77,7 @@ public class Vuelo {
                 ", fecha_salida='" + fecha_salida + '\'' +
                 ", hora_salida='" + hora_salida + '\'' +
                 ", id_avion=" + id_avion +
-                ", modelo_avion =" + this.objAvion.getModelo() +
+                ", objAvion=" + objAvion +
                 '}';
     }
 }

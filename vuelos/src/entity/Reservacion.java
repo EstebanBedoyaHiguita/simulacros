@@ -11,10 +11,12 @@ public class Reservacion {
     private Pasajero objPasajero;
     private Vuelo objVuelo;
 
+    private Avion objAvion;
+
     public Reservacion() {
     }
 
-    public Reservacion(int id_reservacion, int id_pasajero, int id_vuelo, String fecha_reservacion, String asiento, Pasajero objPasajero, Vuelo objVuelo) {
+    public Reservacion(int id_reservacion, int id_pasajero, int id_vuelo, String fecha_reservacion, String asiento, Pasajero objPasajero, Vuelo objVuelo, Avion objAvion) {
         this.id_reservacion = id_reservacion;
         this.id_pasajero = id_pasajero;
         this.id_vuelo = id_vuelo;
@@ -22,6 +24,7 @@ public class Reservacion {
         this.asiento = asiento;
         this.objPasajero = objPasajero;
         this.objVuelo = objVuelo;
+        this.objAvion = objAvion;
     }
 
     public int getId_reservacion() {
@@ -80,6 +83,14 @@ public class Reservacion {
         this.objVuelo = objVuelo;
     }
 
+    public Avion getObjAvion() {
+        return objAvion;
+    }
+
+    public void setObjAvion(Avion objAvion) {
+        this.objAvion = objAvion;
+    }
+
     @Override
     public String toString() {
         return "Reservacion{" +
@@ -88,8 +99,8 @@ public class Reservacion {
                 ", id_vuelo=" + id_vuelo +
                 ", fecha_reservacion='" + fecha_reservacion + '\'' +
                 ", asiento='" + asiento + '\'' +
-                ", NombrePasajero=" + this.objPasajero.getNombre() +
-                ", Vuelo=" + this.objVuelo.toString() +
+                ", objPasajero=" + objPasajero +
+
                 '}';
     }
 }

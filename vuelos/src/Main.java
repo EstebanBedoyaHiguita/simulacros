@@ -1,6 +1,7 @@
 import Data_base.ConfiDB;
 import controller.Avion_Controller;
 import controller.Pasajero_Controller;
+import controller.Reservacion_Controller;
 import controller.Vuelo_Controller;
 
 import javax.swing.*;
@@ -12,6 +13,7 @@ public class Main {
         Pasajero_Controller objPasajeroController = new Pasajero_Controller();
         Avion_Controller objAvionController = new Avion_Controller();
         Vuelo_Controller objVueloController = new Vuelo_Controller();
+        Reservacion_Controller objReservasController = new Reservacion_Controller();
 
         String opcion1 = "";
 
@@ -20,7 +22,7 @@ public class Main {
                     1.Pasajero
                     2.Avion
                     3.Vuelos
-                    4.Especialidades
+                    4.Reservaciones
                     5.Salir
                     """);
 
@@ -145,14 +147,14 @@ public class Main {
                                 objVueloController.create();
                                 break;
                             case "2":
-
+                                objVueloController.edit();
                                 break;
                             case "3":
                                 String opcion8 = "";
 
                                 do {
                                     opcion8 = JOptionPane.showInputDialog("""
-                                                1.Buscar por nombre
+                                                1.Buscar por fecha
                                                 2.Buscar por Id
                                                 3.Salir
                                               
@@ -160,18 +162,21 @@ public class Main {
 
                                     switch (opcion8){
                                         case "1":
-
+                                            objVueloController.buscarDate();
                                             break;
                                         case "2":
+                                            objVueloController.buscarId();
 
                                             break;
                                     }
                                 }while (!opcion8.equals("3"));
                                 break;
                             case "4":
+                                objVueloController.delete();
 
                                 break;
                             case "5":
+                                objVueloController.getAll();
 
                                 break;
                         }
@@ -183,28 +188,53 @@ public class Main {
 
                     do {
                         opcion4 = JOptionPane.showInputDialog("""
-                                1.Crear Especialidad
-                                2.Editar Especialidad
-                                3.Buscar Especialidad
-                                4.Eliminar Especialidad
-                                5.Lista de Especialidades
+                                1.Crear Reservacion
+                                2.Editar Reservacion
+                                3.Buscar Reservacion
+                                4.Eliminar Reservacion
+                                5.Lista de Reservaciones
                                 6.Salir
                                 """);
 
                         switch (opcion4) {
                             case "1":
+                                objReservasController.create();
 
                                 break;
                             case "2":
+                                objReservasController.edit();
 
                                 break;
                             case "3":
+                                String opcion9 = "";
 
+                                do {
+                                    opcion9 = JOptionPane.showInputDialog("""
+                                                1.Buscar por fecha
+                                                2.Buscar por Id
+                                                3.Salir
+                                              
+                                                """);
+
+                                    switch (opcion9){
+                                        case "1":
+                                            objReservasController.buscarDate();
+                                            break;
+                                        case "2":
+                                            objReservasController.buscarId();
+
+                                            break;
+                                    }
+                                }while (!opcion9.equals("3"));
                                 break;
+
+
                             case "4":
+                                objReservasController.delete();
 
                                 break;
                             case "5":
+                                objReservasController.getAll();
 
                                 break;
                         }

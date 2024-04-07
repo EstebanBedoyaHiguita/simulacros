@@ -172,7 +172,7 @@ public class Vuelo_Model implements CRUD_VUELO {
         Vuelo objVuelo = new Vuelo();
 
         try{
-            String sql = "SELECT * FROM vuelo WHERE id-vuelo = ?;";
+            String sql = "SELECT * FROM vuelo WHERE id_vuelo = ?;";
 
             PreparedStatement objPrepare = objConection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             objPrepare.setInt(1,id);
@@ -187,7 +187,7 @@ public class Vuelo_Model implements CRUD_VUELO {
                 objVuelo.setId_vuelo(objResult.getInt("id_vuelo"));
                 objVuelo.setDestino(objResult.getString("destino"));
                 objVuelo.setFecha_salida(objResult.getString("fecha_salida"));
-                objVuelo.setHora_salida(objResult.getString("hota_salida"));
+                objVuelo.setHora_salida(objResult.getString("hora_salida"));
                 objVuelo.setId_avion(objResult.getInt("id_avion"));
 
             }
@@ -202,7 +202,7 @@ public class Vuelo_Model implements CRUD_VUELO {
     }
 
     @Override
-    public Object findDate(String fecha_salida) {
+    public List<Object> findDate(String fecha_salida) {
         Connection objConnection = ConfiDB.openConnection();
 
         List<Object> listVuelos = new ArrayList<>();
@@ -210,6 +210,7 @@ public class Vuelo_Model implements CRUD_VUELO {
         try{
             String sql = "SELECT * FROM vuelo WHERE fecha_salida = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql);
+            objPrepare.setString(1,fecha_salida);
             ResultSet objResult = (ResultSet) objPrepare.executeQuery();
 
             while (objResult.next()){
@@ -221,10 +222,12 @@ public class Vuelo_Model implements CRUD_VUELO {
                 objVuelo.setHora_salida(objResult.getString("hora_salida"));
                 objVuelo.setId_avion(objResult.getInt("id_avion"));
 
+
+
                 listVuelos.add(objVuelo);
             }
         }catch (SQLException e){
-            JOptionPane.showMessageDialog(null,"Error al obtener paciente");
+            JOptionPane.showMessageDialog(null,"Error al obtener Vuelo");
         }
         ConfiDB.closeConnection();
         return listVuelos;

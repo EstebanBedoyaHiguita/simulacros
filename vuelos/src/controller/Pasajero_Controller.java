@@ -114,7 +114,7 @@ public class Pasajero_Controller {
 
     public void buscarDocumento(){
         String documento_Pasajero = JOptionPane.showInputDialog("Ingrese el documento que desea buscar");
-        Pasajero objPasajero = (Pasajero) this.objPasajero_Model.findById(documento_Pasajero);
+        Pasajero objPasajero = (Pasajero) this.objPasajero_Model.findBydocument(documento_Pasajero);
 
         if(objPasajero == null){
             return;

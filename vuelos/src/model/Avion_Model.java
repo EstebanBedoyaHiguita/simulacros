@@ -58,7 +58,7 @@ public class Avion_Model implements CRUD_AVION {
 
             objPrepare.setString(1,objAvion.getModelo());
             objPrepare.setInt(2,objAvion.getCapacidad());
-            objPrepare.setInt(5,objAvion.getId_avion());
+            objPrepare.setInt(3,objAvion.getId_avion());
 
 
             int totalAffectect = objPrepare.executeUpdate();

@@ -11,7 +11,8 @@ public interface CRUD_PASAJERO {
 
     public List<Object> findAll();
 
-    public Object findById(String documento_identidad);
+    public Object findById(int id);
+    public Object findBydocument(String documento_identidad);
 
     public Object findName(String paciente);
 }
