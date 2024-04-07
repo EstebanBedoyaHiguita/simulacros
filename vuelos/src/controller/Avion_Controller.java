@@ -17,7 +17,7 @@ public class Avion_Controller {
     public  void create(){
         Avion objAvion = new Avion();
 
-        String modelo = JOptionPane.showInputDialog("Ingrese el modelo del paciente");
+        String modelo = JOptionPane.showInputDialog("Ingrese el modelo del avion");
         int capacidad = Integer.parseInt(JOptionPane.showInputDialog("Ingrese la capacidad "));
 
 

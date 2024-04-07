@@ -11,9 +11,9 @@ public class ConfiDB {
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
 
-            String url = "jdbc:mysql://b044m0ga7nlstszg9ybz-mysql.services.clever-cloud.com:3306/b044m0ga7nlstszg9ybz";
-            String user = "uphnuyp0icnxne2g";
-            String password = "ppRlnd0PdVmOnNkvWZlQ";
+            String url = "jdbc:mysql://bhpya0pf16bs6q5pcwqk-mysql.services.clever-cloud.com:3306/bhpya0pf16bs6q5pcwqk";
+            String user = "u4ursvtdvzq24hsi";
+            String password = "l6YjEBhgUwCFSYprlm7Q";
 
             objConnection = (Connection) DriverManager.getConnection(url,user,password);
             System.out.println("Conexion exitosa");

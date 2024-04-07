@@ -53,12 +53,13 @@ public class Pasajero_Model implements CRUD_PASAJERO {
         boolean isEdit = false;
 
         try{
-            String sql = "UPDATE pasajero SET nombre = ?,apellidos = ?,documento_identidad =? where id = ?;";
+            String sql = "UPDATE pasajero SET nombre = ?,apellidos = ?,documento_identidad =? where id_pasajero = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.NO_GENERATED_KEYS);
 
             objPrepare.setString(1,objPasajero.getNombre());
             objPrepare.setString(2,objPasajero.getApellidos());
             objPrepare.setString(3,objPasajero.getDocumento_identidad());
+            objPrepare.setInt(4,objPasajero.getId_pasajero());
 
 
             int totalAffectect = objPrepare.executeUpdate();
@@ -84,7 +85,7 @@ public class Pasajero_Model implements CRUD_PASAJERO {
         boolean isDelete = false;
 
         try{
-            String sql = "DELETE FROM pasajero WHERE id = ?";
+            String sql = "DELETE FROM pasajero WHERE id_pasajero = ?";
 
             PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.NO_GENERATED_KEYS);
             objPrepare.setInt(1,objPasajero.getId_pasajero());
@@ -103,19 +104,19 @@ public class Pasajero_Model implements CRUD_PASAJERO {
 
     @Override
     public List<Object> findAll() {
-        Connection objConection = ConfiDB.openConnection();
+        Connection objConnection = ConfiDB.openConnection();
 
         List<Object> listPasajeros = new ArrayList<>();
 
         try{
-            String sql = "SELECT * FROM pasajero ORDER BY paciente.id ASC;";
-            PreparedStatement objPrepare = objConection.prepareStatement(sql);
+            String sql = "SELECT * FROM pasajero ORDER BY pasajero.id_pasajero ASC;";
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql);
 
             ResultSet objResult = (ResultSet)  objPrepare.executeQuery();
             while (objResult.next()){
                 Pasajero objPasajero = new Pasajero();
 
-                objPasajero.setId_pasajero(objResult.getInt("id"));
+                objPasajero.setId_pasajero(objResult.getInt("id_pasajero"));
                 objPasajero.setNombre(objResult.getString("nombre"));
                 objPasajero.setApellidos(objResult.getString("apellidos"));
                 objPasajero.setDocumento_identidad(objResult.getString("documento_identidad"));
@@ -132,14 +133,14 @@ public class Pasajero_Model implements CRUD_PASAJERO {
 
     @Override
     public Object findById(String documento_identidad) {
-        Connection objConection = ConfiDB.openConnection();
+        Connection objConnection = ConfiDB.openConnection();
 
         Pasajero objPasajero = new Pasajero();
 
         try{
             String sql = "SELECT * FROM pasajero WHERE documento_identidad = ?;";
 
-            PreparedStatement objPrepare = objConection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             objPrepare.setString(1,documento_identidad);
             objPrepare.executeQuery();
             ResultSet objResult = (ResultSet) objPrepare.executeQuery();
@@ -149,7 +150,7 @@ public class Pasajero_Model implements CRUD_PASAJERO {
                 JOptionPane.showMessageDialog(null,"Documento no encontrado");
                 return null;
             }else {
-                objPasajero.setId_pasajero(objResult.getInt("id"));
+                objPasajero.setId_pasajero(objResult.getInt("id_pasajero"));
                 objPasajero.setNombre(objResult.getString("nombre"));
                 objPasajero.setApellidos(objResult.getString("apellidos"));
                 objPasajero.setDocumento_identidad(objResult.getString("documento_identidad"));
@@ -179,7 +180,7 @@ public class Pasajero_Model implements CRUD_PASAJERO {
             while (objResult.next()){
                 Pasajero objPasajero = new Pasajero();
 
-                objPasajero.setId_pasajero(objResult.getInt("id"));
+                objPasajero.setId_pasajero(objResult.getInt("id_pasajero"));
                 objPasajero.setNombre(objResult.getString("nombre"));
                 objPasajero.setApellidos(objResult.getString("apellidos"));
                 objPasajero.setDocumento_identidad(objResult.getString("documento_identidad"));

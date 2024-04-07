@@ -21,7 +21,7 @@ public class Avion_Model implements CRUD_AVION {
         Avion objAvion = (Avion) object;
 
         try{
-            String sql = "INSERT INTO avion (modelo,capacidad) VALUE(?,?,)";
+            String sql = "INSERT INTO avion (modelo,capacidad) VALUE(?,?)";
 
             PreparedStatement objPrepare = (PreparedStatement)  objConnection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             objPrepare.setString(1, objAvion.getModelo());
@@ -53,12 +53,13 @@ public class Avion_Model implements CRUD_AVION {
         boolean isEdit = false;
 
         try{
-            String sql = "UPDATE avion SET modelo = ?,capacidad = ? where id = ?;";
+            String sql = "UPDATE avion SET modelo = ?,capacidad = ? where id_avion = ?;";
             PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.NO_GENERATED_KEYS);
 
             objPrepare.setString(1,objAvion.getModelo());
             objPrepare.setInt(2,objAvion.getCapacidad());
             objPrepare.setInt(5,objAvion.getId_avion());
+
 
             int totalAffectect = objPrepare.executeUpdate();
 
@@ -83,7 +84,7 @@ public class Avion_Model implements CRUD_AVION {
         boolean isDelete = false;
 
         try{
-            String sql = "DELETE FROM avion WHERE id = ?";
+            String sql = "DELETE FROM avion WHERE id_avion = ?";
 
             PreparedStatement objPrepare = objConnection.prepareStatement(sql,PreparedStatement.NO_GENERATED_KEYS);
             objPrepare.setInt(1,objAvion.getId_avion());
@@ -136,7 +137,7 @@ public class Avion_Model implements CRUD_AVION {
         Avion objAvion = new Avion();
 
         try{
-            String sql = "SELECT * FROM avion WHERE id = ?;";
+            String sql = "SELECT * FROM avion WHERE id_avion = ?;";
 
             PreparedStatement objPrepare = objConection.prepareStatement(sql,PreparedStatement.RETURN_GENERATED_KEYS);
             objPrepare.setInt(1,id);

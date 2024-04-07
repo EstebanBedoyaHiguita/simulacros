@@ -15,7 +15,7 @@ public class Pasajero_Controller {
     public  void create (){
         Pasajero objPasajero = new Pasajero();
 
-        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del paciente");
+        String nombre = JOptionPane.showInputDialog("Ingrese el nombre del pasajero");
         String apellidos = JOptionPane.showInputDialog("Ingrese los apellidos");
         String documento_identidad = JOptionPane.showInputDialog("Ingrese el numero de documento");
 
@@ -113,7 +113,7 @@ public class Pasajero_Controller {
     }
 
     public void buscarDocumento(){
-        String documento_Pasajero = JOptionPane.showInputDialog("Ingrese el Id que desea buscar");
+        String documento_Pasajero = JOptionPane.showInputDialog("Ingrese el documento que desea buscar");
         Pasajero objPasajero = (Pasajero) this.objPasajero_Model.findById(documento_Pasajero);
 
         if(objPasajero == null){
